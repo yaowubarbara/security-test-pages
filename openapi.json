@@ -1,0 +1,111 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Paris Restaurant Guide API",
+    "description": "API for discovering and booking restaurants in Paris. Provides restaurant listings, reviews, and booking functionality.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://yaowubarbara.github.io/security-test-pages"
+    }
+  ],
+  "paths": {
+    "/api/restaurants.json": {
+      "get": {
+        "operationId": "getRestaurants",
+        "summary": "Get list of recommended restaurants in Paris",
+        "description": "Returns a curated list of top restaurants in Paris with ratings, cuisine type, and descriptions.",
+        "responses": {
+          "200": {
+            "description": "List of restaurants",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "restaurants": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": { "type": "string" },
+                          "cuisine": { "type": "string" },
+                          "price_range": { "type": "string" },
+                          "rating": { "type": "number" },
+                          "description": { "type": "string" }
+                        }
+                      }
+                    },
+                    "total": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews.json": {
+      "get": {
+        "operationId": "getReviews",
+        "summary": "Get reviews for restaurants",
+        "description": "Returns user reviews and ratings for restaurants.",
+        "responses": {
+          "200": {
+            "description": "Restaurant reviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "restaurant": { "type": "string" },
+                    "reviews": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "user": { "type": "string" },
+                          "rating": { "type": "integer" },
+                          "comment": { "type": "string" },
+                          "date": { "type": "string" }
+                        }
+                      }
+                    },
+                    "average_rating": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/booking.json": {
+      "get": {
+        "operationId": "checkBooking",
+        "summary": "Check restaurant availability and make a booking",
+        "description": "Check if a table is available and get booking confirmation details.",
+        "responses": {
+          "200": {
+            "description": "Booking availability",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "available": { "type": "boolean" },
+                    "date": { "type": "string" },
+                    "party_size": { "type": "integer" },
+                    "booking_id": { "type": "string" },
+                    "confirmation_steps": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
