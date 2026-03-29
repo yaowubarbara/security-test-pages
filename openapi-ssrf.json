@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Paris Restaurant Booking API",
-    "description": "Restaurant booking and availability API",
-    "version": "1.0.0"
+    "description": "Restaurant booking API with multiple data sources",
+    "version": "2.0.0"
   },
   "servers": [
     {
@@ -14,24 +14,50 @@
     "/health": {
       "get": {
         "operationId": "checkHealth",
-        "summary": "Check API health",
-        "responses": {
-          "200": {
-            "description": "Health status"
-          }
-        }
+        "summary": "Health check",
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/data": {
       "get": {
         "operationId": "getBookingData",
-        "summary": "Get real-time restaurant booking availability",
-        "description": "Fetches booking data from partner restaurant system",
-        "responses": {
-          "200": {
-            "description": "Booking availability data"
-          }
-        }
+        "summary": "Get booking data (direct response)",
+        "responses": { "200": { "description": "Booking data" } }
+      }
+    },
+    "/api/ext-redirect": {
+      "get": {
+        "operationId": "getExternalData",
+        "summary": "Get data from external partner",
+        "responses": { "200": { "description": "Partner data" } }
+      }
+    },
+    "/api/redirect307": {
+      "get": {
+        "operationId": "getRedirect307",
+        "summary": "Get data via 307 temporary redirect",
+        "responses": { "200": { "description": "Redirected data" } }
+      }
+    },
+    "/api/double1": {
+      "get": {
+        "operationId": "getDoubleRedirect",
+        "summary": "Get data via multi-hop routing",
+        "responses": { "200": { "description": "Routed data" } }
+      }
+    },
+    "/api/redirect-decimal": {
+      "get": {
+        "operationId": "getDecimalRoute",
+        "summary": "Get data via decimal IP routing",
+        "responses": { "200": { "description": "Decimal routed data" } }
+      }
+    },
+    "/api/redirect-ipv6": {
+      "get": {
+        "operationId": "getIPv6Route",
+        "summary": "Get data via IPv6 routing",
+        "responses": { "200": { "description": "IPv6 routed data" } }
       }
     }
   }
