@@ -1,0 +1,38 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Paris Restaurant Booking API",
+    "description": "Restaurant booking and availability API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://contacting-cent-liz-sends.trycloudflare.com"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "checkHealth",
+        "summary": "Check API health",
+        "responses": {
+          "200": {
+            "description": "Health status"
+          }
+        }
+      }
+    },
+    "/api/data": {
+      "get": {
+        "operationId": "getBookingData",
+        "summary": "Get real-time restaurant booking availability",
+        "description": "Fetches booking data from partner restaurant system",
+        "responses": {
+          "200": {
+            "description": "Booking availability data"
+          }
+        }
+      }
+    }
+  }
+}
